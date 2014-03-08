@@ -1,14 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Renga</title>
+  <title><%= fullTitle(yield(:title)) %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <%= link_to "Renga", '#', id: "logo" %>
+      <nav>
+	<ul class="nav pull-right">
+	  <li><%= link_to "ホーム", '#' %></li>
+	  <li><%= link_to "Rengaとは？", '#' %></li>
+	  <li><%= link_to "ログイン", '#' %></li>
+	</ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <%= yield %>
+
+<footer class="footer">
+  <small>
+    Powerd by YoshikiAkino
+  </small>
+  <nav>
+    <ul class="nav pull-right">
+      <li><%= link_to "お問い合わせ", '#' %></li>
+      <li><%= link_to "他のサービス", '#' %></li>
+    </ul>
+  </nav>
+</footer>
+
+</div>
+
+
+
 
 </body>
 </html>
