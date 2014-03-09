@@ -2,7 +2,7 @@
 class User < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 20 }
   # name cant be blank
-  # and length <= 20
+  # 4 <= length <= 20
   # name は一意でなくていい (同じ名前のユーザが存在してもいい)
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]*\z/i
@@ -14,4 +14,9 @@ class User < ActiveRecord::Base
   
   before_save { self.email = email.downcase }
   # save 前に email をすべて小文字に
+
+  has_secure_password
+  validates :password, length: { minimum: 6 }
+  # password_digest 絡む関係
+  # password の長さは 6以上
 end
