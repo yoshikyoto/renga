@@ -1,0 +1,4 @@
+class AddIntexToUsersEmail < ActiveRecord::Migration
+  def change
+  end
+end
