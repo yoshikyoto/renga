@@ -1,4 +1,8 @@
 @import "bootstrap";
+/* 変数も定義できる
+   $lightGray: #999;
+   color: $lightGray;
+   のように */
 
 /* ページ全体について */
 html{
@@ -19,10 +23,9 @@ textarea{
 
 .center{
   text-align: center;
-}
-
-.center h1{
-  margin-bottom: 10px;
+  h1 {
+    marigin-bottom: 10px;
+  }
 }
 
 /* ロゴ */
@@ -36,11 +39,12 @@ textarea{
   padding-top: 9px;
   font-weight: bold;
   line-height: 1;
-}
-
-#logo:hover{
-  color: #fff;
-  text-decoration: none;
+  
+  /* hober はマウスが上に乗った時のもの */
+  &:hover{
+    color: #ccc;
+    text-decoration: none;
+  }
 }
 
 /* 本体 */
@@ -75,25 +79,23 @@ footer{
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
   color: #999;
-}
+  a{
+    color: #555;
+    &:hover{
+      color:#222;
+    }
+  }
 
-footer a{
-  color: #555;
-}
+  small{
+    float: left;
+  }
 
-footer a:hover{
-  float: #222;
-}
-
-footer small{
-  float: #222;
-}
-
-footer ul{
-  float: left;
-}
-
-footer ul li{
-  float: left;
-  margin-left: 10px;
+  ul{
+    float: right;
+    list-style: none;
+    li{
+      float: left;
+      margin-left: 10px;
+    }
+  }
 }
