@@ -28,7 +28,7 @@
 <% # ユーザ登録などのメッセージの表示 %>
 <% # key が error か sucsess かによって css で表示が変わる %>
 <% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>"><%= value %></div>
+  <%= content_tag(:div, value, class: "alert alert-#{key}") %>
 <% end %>
 
   <%= yield %>
