@@ -4,10 +4,13 @@ Renga::Application.routes.draw do
   match '/help', to: 'static_pages#help', via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
 
+  resources :users
   get "users/new"
   match '/signup', to: 'users#new', via: 'get'
 
-  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+  match '/signin', to: 'sessions#new', via: 'get'
+  match '/signout', to: 'sessions#destroy', via: 'delete'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
