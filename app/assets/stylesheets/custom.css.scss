@@ -94,8 +94,25 @@ footer{
     float: right;
     list-style: none;
     li{
+
       float: left;
       margin-left: 10px;
     }
   }
 }
+
+/* sass のミックスイン (Rails チュートリアル 7.1節あたり)  デバッグ整形の一部*/
+@mixin box_sizing{
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* デバッグの整形 */
+.debug_dump{
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
