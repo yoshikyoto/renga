@@ -19,4 +19,19 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }
   # password_digest 絡む関係
   # password の長さは 6以上
+
+  # ログインのためのセッショントークン新規作成
+  def User.new_remember_token
+    SecureRandom.urlsafe_base64
+  end
+  
+  # 高速なSHA1暗号化(セッションは速度が必要)
+  def User.encrypt(token)
+    Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  private
+    def create_remember_token
+      self.remember_token = User.encrypt(User.new_remember_token)
+    end
 end
