@@ -14,14 +14,15 @@
       <%= link_to "Renga", root_path, id: "logo" %>
       <nav>
 	<ul class="nav pull-right">
-	  <li><%= link_to "ホーム", root_path %></li>
-	  <% #if signed_in? # ログインしているとき %>
-	    <li><%= link_to "Username", '#' %></li>
-	    <li><%= link_to "Settings", '#' %></li>
-	  <% #else # ログインしてないとき %>
+	  <li><%= link_to "ホーム", root_path%></li>
 	    <li><%= link_to "Rengaとは？", help_path %></li>
+	  <% if signed_in? # ログインしているとき %>
+	    <li><%= link_to "プロフィール", current_user %></li>
+	    <li><%= link_to "設定", '#' %></li>
+	    <li><%= link_to "ログアウト", signout_path, method: "delete" %>
+	  <% else # ログインしてないとき %>
 	    <li><%= link_to "ログイン", signin_path %></li>
-	  <% #end %>
+	  <% end %>
 	</ul>
       </nav>
     </div>

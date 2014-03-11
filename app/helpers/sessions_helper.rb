@@ -2,7 +2,7 @@
 module SessionsHelper
   def sign_in(user)
     # トークンを生成
-    remember_token = User.new_remenber_token
+    remember_token = User.new_remember_token
     # cookie に登録
     cookies.permanent[:remember_token] = remember_token
     # 暗号化したトークンをデータベースに保持
@@ -23,6 +23,12 @@ module SessionsHelper
 
   # サインインしてるかどうか確認するメソッド
   def signed_in?
-    !current.user.nil?
+    !current_user.nil?
+  end
+
+  # サインアウトする関数
+  def sign_out
+    self.current_user = nil
+    cookies.delete(:remember_token)
   end
 end
