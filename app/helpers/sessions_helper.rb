@@ -21,6 +21,10 @@ module SessionsHelper
     @current_user ||= User.find_by(remember_token: remember_token)
   end
 
+  def current_user?(user)
+    user == current_user
+  end
+
   # サインインしてるかどうか確認するメソッド
   def signed_in?
     !current_user.nil?
@@ -30,5 +34,15 @@ module SessionsHelper
   def sign_out
     self.current_user = nil
     cookies.delete(:remember_token)
+  end
+
+  # フレンドリーフォワーディング関係
+  def redirect_back_or(default)
+    redirect_to(session[:return_to] || default)
+    session.delete(:return_to)
+  end
+
+  def store_location
+    session[:return_tu] = request.url
   end
 end
