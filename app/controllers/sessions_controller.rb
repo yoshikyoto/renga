@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       # sign_in succeed  sign_in は自分で定義したメソッド
       sign_in user # SessionsHelper の関数
-      redirect_to user
+      redirect_back_or user # app/helper/sessions_helper.rb のメソッド
     else
       # sign_in failed
       flash.now[:error] = "メールアドレスまたはパスワードが違います"

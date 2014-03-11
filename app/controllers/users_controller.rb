@@ -50,8 +50,11 @@ class UsersController < ApplicationController
 
     # ログインしていないときにログインページに飛ばしてメッセージを表示する
     def signed_in_user
-      redirect_to signin_url, notice: "ログインしてください" unless signed_in?
-      # flash[:notice] = "ログインしてください" してリダイレクトするのと同じ
+      unless signed_in?
+        store_location # app/helpers/sessions_helper.rb に実装してある関数
+        redirect_to signin_url, notice: "ログインしてください"
+        # flash[:notice] = "ログインしてください" してリダイレクトするのと同じ
+      end
     end
 
     # @user と current_user が一致しているかどうか確認
