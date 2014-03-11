@@ -1,0 +1,2 @@
+<% provide(:title, 'All Users') %>
+<h1>ユーザー一覧</h1>
