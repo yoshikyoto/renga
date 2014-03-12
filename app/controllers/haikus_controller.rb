@@ -14,6 +14,8 @@ class HaikusController < ApplicationController
       redirect_to root_url
     else
       # post に失敗した場合
+      # feed 表示でエラーが出ないように、とりあえず空の配列を渡す
+      @feed_items = []
       render 'static_pages/home'
     end
   end

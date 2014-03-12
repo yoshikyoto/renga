@@ -13,6 +13,11 @@
       <% # views/shared/_haiku_form.html.erb (俳句投稿パーシャル) %>
     </section>
   </aside>
+
+  <div class="span8">
+    <h3>フィード</h3>
+    <%= render 'shared/feed' %>
+  </div>
 </div>
 
 <% else # ログインしてないときの home %>
