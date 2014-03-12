@@ -4,7 +4,9 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
   def index
-    @users = User.all
+    # @users = User.all
+    # pagenate のための新しいメソッドに置き換え
+    @users = User.paginate(page: params[:page])
   end
 
   def show

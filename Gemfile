@@ -5,6 +5,8 @@ gem 'rails', '4.0.3'
 gem 'bootstrap-sass', '2.3.2.0'
 gem 'bcrypt-ruby'
 gem 'faker'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
