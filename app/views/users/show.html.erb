@@ -12,6 +12,16 @@
       </h2>
     </section>
   </aside>
+  
+  <div class="span8">
+    <% if @user.haikus.any? %>
+      <h3>Microposts (<%= @user.haikus.count %>)</h3>
+      <ol class="microposts">
+	<%= render @haikus %>
+      </ol>
+      <%= will_paginate @microposts %>
+    <% end %>
+  </div>
 </div>
 
 <% @user.email %>
