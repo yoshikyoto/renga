@@ -16,5 +16,16 @@ namespace :db do
 		   password: password,
 		   password_confirmation: password)
     end
+    users = User.all(limit: 6)
+    50.times do
+      first_five = "12345"
+      middle_seven = "1234567"
+      last_five = "12345"
+      users.each{ |user|
+        user.haikus.create!(first_five: first_five,
+			    middle_seven: middle_seven,
+			    last_five: last_five) 
+      }
+    end
   end
 end

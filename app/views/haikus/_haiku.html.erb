@@ -1,5 +1,9 @@
 <li>
-  <span class="content"><%= haiku.first_five %></span>
+  <span class="content">
+    <%= haiku.first_five %>
+    <%= haiku.middle_seven %>
+    <%= haiku.last_five %>
+  </span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(haiku.created_at) %> ago.
   </span>
