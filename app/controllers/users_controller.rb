@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
+  before_action :already_signed_in, only: [:new, :create]
 
   def index
     # @users = User.all
@@ -67,6 +68,13 @@ class UsersController < ApplicationController
         store_location # app/helpers/sessions_helper.rb に実装してある関数
         redirect_to signin_url, notice: "ログインしてください"
         # flash[:notice] = "ログインしてください" してリダイレクトするのと同じ
+      end
+    end
+
+    # すでにサインインしてたら　new とか create は不要。
+    def already_signed_in
+      if signed_in?
+        redirect_to current_user
       end
     end
 
