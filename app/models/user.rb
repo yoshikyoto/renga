@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 class User < ActiveRecord::Base
+  has_many :haikus, dependent: :destroy
+  # User は いくつかの haikus を持っている
+  # dependent: User が destroy された時は、関連した haikus も destroy される
+
   validates :name, presence: true, length: { maximum: 20 }
   # name cant be blank
   # 4 <= length <= 20
