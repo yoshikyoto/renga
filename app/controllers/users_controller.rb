@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update]
+  # sidned_in_user は SessionsHelper に実装してある関数
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   before_action :already_signed_in, only: [:new, :create]
@@ -68,15 +69,6 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password,
                                    :password_confirmation)
-    end
-
-    # ログインしていないときにログインページに飛ばしてメッセージを表示する
-    def signed_in_user
-      unless signed_in?
-        store_location # app/helpers/sessions_helper.rb に実装してある関数
-        redirect_to signin_url, notice: "ログインしてください"
-        # flash[:notice] = "ログインしてください" してリダイレクトするのと同じ
-      end
     end
 
     # すでにサインインしてたら　new とか create は不要。

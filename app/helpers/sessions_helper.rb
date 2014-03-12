@@ -30,6 +30,15 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  # ログインしていないときにログインページに飛ばしてメッセージを表示する
+  def signed_in_user
+    unless signed_in?
+      store_location # app/helpers/sessions_helper.rb に実装してある関数
+      redirect_to signin_url, notice: "ログインしてください"
+      # flash[:notice] = "ログインしてください" してリダイレクトするのと同じ
+    end
+  end
+
   # サインアウトする関数
   def sign_out
     self.current_user = nil
