@@ -4,19 +4,8 @@
 <%= will_paginate %>
 
 <ul class="users">
-  <% @users.each do |user| %>
-    <li>
-      <%= gravatar_for user, size: 32 %>
-      <% if user.admin? %>
-        *
-      <% end %>
-      <%= link_to user.name, user %>
-      <% if current_user.admin? && !current_user?(user) %>
-       | <%= link_to "delete", user, method: :delete,
-	     data: { confirm: "よろしいですか？" } %>
-      <% end %>
-    </li>
-  <% end %>
+  <%= render @users %>
+  <% # これで、@users の各 user に対して _user.html.erb を参照 %>
 </ul>
 
 <%= will_paginate %>
