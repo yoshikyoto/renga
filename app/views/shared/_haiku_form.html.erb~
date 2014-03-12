@@ -1,0 +1,7 @@
+<%= form_for(@haikus) do |f| %>
+  <%= render 'shared/error_massages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :first_five, placeholder: "New 五七五" %>
+  </div>
+  <%= f.submit "投稿", class: "btn btn-large btn-primary">
+<% end %>

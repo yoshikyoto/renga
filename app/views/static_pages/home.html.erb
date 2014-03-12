@@ -1,9 +1,32 @@
+
+<% if signed_in? # ログインしてる時の home %>
+
+<div class="row">
+  <aside class="span4">
+    <section>
+      <%= render 'shared/user_info' %>
+      <% # views/shared/_user_info.html.erb (ユーザー情報パーシャル) %>
+    </section>
+    <section>
+      <h2>五七五を投稿する</h2>
+      <%= render 'shared/haiku_form' %>
+      <% # views/shared/_haiku_form.html.erb (俳句投稿パーシャル) %>
+    </section>
+  </aside>
+</div>
+
+<% else # ログインしてないときの home %>
+
 <div class="center hero-unit">
-<h1>Welcome to Renga World</h1>
-<h2>
-<a href="http://ja.wikipedia.org/wiki/%E9%80%A3%E6%AD%8C" target="_blank">連歌</a>
-とは、鎌倉時代に誕生した、日本の伝統的なtwitterです。<br>
-ある人がtweetした575に対して、77の形でReplyする遊びです。
-</h2>
+  <h1>Welcome to Renga World</h1>
+  <h2>
+    <!-- <a href="http://ja.wikipedia.org/wiki/%E9%80%A3%E6%AD%8C" target="_blank">連歌</a> -->
+    <%= link_to "連歌", help_path %>
+    とは、五七五と七七で対話する、日本の伝統的なtwitterです。<br>
+    <!-- <%= link_to "詳しく", help_path %> -->
+    <!-- ある人がtweetした575に対して、77の形でReplyする遊びです。-->
+  </h2>
 <%= link_to "ユーザー登録", signup_path, class: "btn btn-large btn primary" %>
 </div>
+
+<% end %>
