@@ -4,7 +4,8 @@ namespace :db do
     User.create!(name: "Yoshiki",
     		 email: "stb_yoshiyuki-s@hotmail.co.jp",
 		 password: "yoshiking",
-		 password_confirmation: "yoshiking")
+		 password_confirmation: "yoshiking",
+		 admin: true)
 
     99.times do |n|
       name = "User #{n+1}"
