@@ -6,5 +6,11 @@
   </span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(haiku.created_at) %> ago.
+    
+    <% if current_user?(haiku.user) %>
+      <%= link_to "delete", haiku, method: :delete,
+	  data: { confirm: "削除してよろしいですか？" },
+	  title: (haiku.first_five + haiku.middle_seven + haiku.last_five) %>
+    <% end %>
   </span>
 </li>
