@@ -4,6 +4,17 @@ class User < ActiveRecord::Base
   # User は いくつかの haikus を持っている
   # dependent: User が destroy された時は、関連した haikus も destroy される
 
+  # フォロー関係について 11章
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :followed_users, through: :relationships, source: :followed
+  # followed を通じてリストを作成するが、リストの名前が "followeds" では違和感があるので
+  # followed_users とする。
+  #フォロワー
+  has_many :reverse_relationships, foreign_key: "followed_id",
+           class_name: "Relationship", dependent: :destroy
+  has_many :followers, through: :reverse_relationships
+  # こっちは source いらない
+
   validates :name, presence: true, length: { maximum: 20 }
   # name cant be blank
   # 4 <= length <= 20
@@ -37,6 +48,20 @@ class User < ActiveRecord::Base
   # home に表示する feed を取ってくる関数
   def feed
     Haiku.where("user_id = ?", id)
+  end
+
+  # フォローしてるか確認する関数
+  def following?(other_user)
+    relationships.find_by(followed_id: other_user.id)
+  end
+
+  # フォローする関数
+  def follow!(other_user)
+    relationships.create!(followed_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    relationships.find_by(followed_id: other_user.id).destroy
   end
 
   private
