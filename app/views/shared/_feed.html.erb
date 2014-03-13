@@ -1,7 +1,7 @@
 <% if @feed_items.any? # フィードを表示するパーシャル%>
   <ol class="microposts">
     <%= render partial: 'shared/feed_item', collection: @feed_items %>
-    <% # @feed_items の中身を feed_item といして _feed_item.html.erb パーシャルに渡す %>
+    <% # @feed_items の中身を feed_item として _feed_item.html.erb パーシャルに渡す %>
   </ol>
   <%= will_paginate @feed_items %>
 <% end %>

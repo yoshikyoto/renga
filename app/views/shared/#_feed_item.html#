@@ -12,6 +12,7 @@
   <span class="timestamp">
     Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
     <%= render partial: 'shared/delete_item_link', locals: { item: feed_item } %>
+    <% # item という変数に feed_item を突っ込んで、とりあえず
 
 <!--
     <% if current_user?(feed_item.user) %>
