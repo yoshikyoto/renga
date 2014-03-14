@@ -1,17 +1,13 @@
 <!-- _follow_form.html -->
 <% unless current_user?(@user) %>
+
+<% # remote:true によって非同期通信(Ajax)を使用する %>
+
   <div id="follow_form">
     <% if current_user.following?(@user) %>
-      <%= form_for(current_user.relationships.find_by(followed_id: @user),
-	    html: { method: :delete }) do |f| %>
-        <%= f.submit "Unfollow", class: "btn btn-large" %>
-      <% end %>
-
+      <%= render 'users/unfollow' %>
     <% else %>
-      <%= form_for(current_user.relationships.build(followed_id: @user.id)) do |f| %>
-      <div><%= f.hidden_field :followed_id %></div>
-        <%= f.submit "Follow", class: "btn btn-large btn-primary" %>
-      <% end %>
+      <%= render 'users/follow' %>
     <% end %>
   </div>
 <% end %>
