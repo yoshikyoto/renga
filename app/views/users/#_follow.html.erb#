@@ -1,0 +1,8 @@
+<!-- follow -->
+<% # remote:true によって非同期通信(Ajax)を使用する %>
+
+<%= form_for(current_user.relationships.build(followed_id: @user.id),
+	    remote: true) do |f| %>
+  <div><%= f.hidden_field :followed_id %></div>
+  <%= f.submit "Follow", class: "btn btn-large btn-primary" %>
+<% end %>

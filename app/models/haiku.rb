@@ -8,4 +8,16 @@ class Haiku < ActiveRecord::Base
   validates :first_five, presence: true, length: { maximum: 6 }
   validates :middle_seven, presence:true, length: { maximum: 8 }
   validates :last_five, presence:true, length: { maximum: 6 }
+
+  # フィード
+  def self.from_users_followed_by(user)
+    # 遅いコード
+    # followed_user_ids = user.followed_user_ids
+    # where("user_id IN (?) OR user_id = ?", followed_user_ids, user)
+    # user_id の使い回しをする
+    followed_user_ids = "SELECT followed_id FROM relationships
+                         WHERE follower_id = :user_id"
+    where("user_id IN (#{followed_user_ids}) OR user_id = :user_id",
+           user_id: user)
+  end
 end

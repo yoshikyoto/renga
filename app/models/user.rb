@@ -47,7 +47,8 @@ class User < ActiveRecord::Base
 
   # home に表示する feed を取ってくる関数
   def feed
-    Haiku.where("user_id = ?", id)
+    # Haiku.where("user_id = ?", id)
+    Haiku.from_users_followed_by(self)
   end
 
   # フォローしてるか確認する関数
