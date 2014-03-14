@@ -5,7 +5,12 @@ Renga::Application.routes.draw do
   match '/help', to: 'static_pages#help', via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'
 
-  resources :users
+  # users/1/following のようなリンクにする 11章
+  resources :users do
+    member do # member は id を含むものに対して以下のルーティングを提供する
+      get :following, :followers
+    end
+  end
   get "users/new"
   match '/signup', to: 'users#new', via: 'get'
 
@@ -15,6 +20,9 @@ Renga::Application.routes.draw do
 
   # haiku の new や edit は user を通して行われるので、create と destroy だけでいい
   resources :haikus, only: [:create, :destroy]
+
+  # follow unfollow のためのルーティング
+  resources :relationships, only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

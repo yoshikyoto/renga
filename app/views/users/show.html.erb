@@ -14,6 +14,8 @@
   </aside>
   
   <div class="span8">
+    <% render 'follow_form' if signed_in? %>
+    <% # views/users/_follow_form.html.erb %>
     <% if @user.haikus.any? %>
       <h3>Microposts (<%= @user.haikus.count %>)</h3>
       <ol class="microposts">

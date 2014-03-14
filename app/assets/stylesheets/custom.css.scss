@@ -146,6 +146,29 @@ aside{
   margin-right: 10px;
 }
 
+/* フォロー/フォロワー　表示部分 */
+.stats{
+  overflow: auto;
+  a{
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid #eaeaea;
+    color: gray;
+    &:first-child{
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover{
+      text-decoration: none;
+      color: #0000ff;
+    }
+  }
+  strong{
+    display: block;
+  }
+}
+
+
 /* フォーム */
 input, textarea, select, .uneditable-input{
   border: 1px solid #bbb;

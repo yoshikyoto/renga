@@ -1,0 +1,19 @@
+<% @user ||= current_user %>
+<% # @user が nil でないとき (ユーザーページの時) は @user に対して表示 %>
+<% # そうでなければ current_user (ホームフィードに表示するとき用) %>
+
+<% # id 属性がついているのは Ajax 用 %>
+<div class="stats">
+  <a href="<%= following_user_path(@user) %>">
+    <strong id="following" class="stat">
+      <%= @user.followed_users.count %>
+    </strong>
+    フォロー
+  </a>
+  <a href="<%= followers_user_path(@user) %>">
+    <strong id="followers" class="stat">
+      <%= @user.followers.count %>
+    </strong>
+    フォロワー
+  </a>
+</div>

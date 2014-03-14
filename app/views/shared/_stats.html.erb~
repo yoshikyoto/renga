@@ -1,0 +1,3 @@
+<% @user ||= current_user %>
+<% # current_user が渡されていた場合は、current_user を @user に代入 %>
+<% # (ホームフィードに表示するとき用 %>
