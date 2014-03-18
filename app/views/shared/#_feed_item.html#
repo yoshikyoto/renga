@@ -5,21 +5,17 @@
     <%= link_to feed_item.user.name, feed_item.user %>
   </span>
   <span class="content">
-    <%= feed_item.first_five %>
-    <%= feed_item.middle_seven %>
-    <%= feed_item.last_five %>
+    <% if !feed_item.last_part %>
+      <%= feed_item.first_five %>
+      <%= feed_item.first_seven %>
+      <%= feed_item.second_five %>
+    <% else %>
+      <%= feed_item.first_seven %>
+      <%= feed_item.second_seven %>
+    <% end %>
   </span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
     <%= render partial: 'shared/delete_item_link', locals: { item: feed_item } %>
-    <% # item という変数に feed_item を突っ込んで、とりあえず
-
-<!--
-    <% if current_user?(feed_item.user) %>
-      <%= link_to "delete", feed_item, method: :delete,
-	  data: { confirm: "削除してよろしいですか？" },
-	  title: (feed_item.first_five + feed_item.middle_seven + feed_item.last_five) %>
-    <% end %>
--->
   </span>
 </li>

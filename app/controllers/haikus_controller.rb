@@ -28,7 +28,7 @@ class HaikusController < ApplicationController
 
   private
     def haiku_params
-      params.require(:haiku).permit(:first_five, :middle_seven, :last_five)
+      params.require(:haiku).permit(:first_five, :first_seven, :second_five, :second_seven)
     end
 
     # 本人の俳句かどうか確認

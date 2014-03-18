@@ -11,15 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140313180521) do
+ActiveRecord::Schema.define(version: 20140317152724) do
 
   create_table "haikus", force: true do |t|
     t.string   "first_five"
-    t.string   "middle_seven"
-    t.string   "last_five"
+    t.string   "first_seven"
+    t.string   "second_five"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "in_reply_to_user_id"
+    t.integer  "in_reply_to_haiku_id"
+    t.string   "second_seven"
+    t.boolean  "last_part",            default: false
   end
 
   add_index "haikus", ["user_id", "created_at"], name: "index_haikus_on_user_id_and_created_at"

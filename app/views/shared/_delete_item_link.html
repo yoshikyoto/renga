@@ -1,5 +1,5 @@
 <% if current_user?(item.user) %>
   <%= link_to "delete", item, method: :delete,
       data: { confirm: "削除してよろしいですか？" },
-      title: (item.first_five + item.middle_seven + item.last_five) %>
+      title: (item.first_five + item.first_seven + item.second_five) %>
 <% end %>

@@ -1,19 +1,16 @@
 <li>
   <span class="content">
-    <%= haiku.first_five %>
-    <%= haiku.middle_seven %>
-    <%= haiku.last_five %>
+    <% if !haiku.last_part %>
+      <%= haiku.first_five %>
+      <%= haiku.first_seven %>
+      <%= haiku.second_five %>
+    <% else %>
+      <%= haiku.first_seven %>
+      <%= haiku.second_seven %>
+    <% end %>
   </span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(haiku.created_at) %> ago.
     <%= render partial: 'shared/delete_item_link', locals: { item: haiku } %>
-    
-<!--
-    <% if current_user?(haiku.user) %>
-      <%= link_to "delete", haiku, method: :delete,
-	  data: { confirm: "削除してよろしいですか？" },
-	  title: (haiku.first_five + haiku.middle_seven + haiku.last_five) %>
-    <% end %>
--->
   </span>
 </li>

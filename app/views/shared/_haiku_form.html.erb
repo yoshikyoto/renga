@@ -2,8 +2,9 @@
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.text_field :first_five, placeholder: "五" %>
-    <%= f.text_field :middle_seven, placeholder: "七" %>
-    <%= f.text_field :last_five, placeholder: "五" %>
+    <%= f.text_field :first_seven, placeholder: "七" %>
+    <%= f.text_field :second_five, placeholder: "五" %>
+    <%= f.hidden_field :second_seven, :value => "ぬ" %>
   </div>
   <%= f.submit "投稿", class: "btn btn-large btn-primary" %>
 <% end %>

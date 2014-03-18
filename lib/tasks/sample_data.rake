@@ -3,6 +3,7 @@ namespace :db do
   task populate: :environment do
     make_users
     make_haikus
+    make_replies
     make_relationships
   end
 end
@@ -29,15 +30,35 @@ def make_haikus
     users = User.all(limit: 6)
     50.times do
       first_five = "12345"
-      middle_seven = "1234567"
-      last_five = "12345"
+      first_seven = "1234567"
+      second_five = "12345"
       users.each{ |user|
         user.haikus.create!(first_five: first_five,
-			    middle_seven: middle_seven,
-			    last_five: last_five) 
+			    first_seven: first_seven,
+			    second_five: second_five,
+			    second_seven: "ぬ") 
       }
     end
 end
+
+def make_replies
+    users = User.all(limit: 3)
+    10.times do
+      first_seven = "1234567"
+      second_seven = "1234567"
+      @in_reply_to = 1
+      users.each{ |user|
+        user.haikus.create!(first_five: "ぬ",
+			    first_seven: first_seven,
+			    second_five: "ぬ",
+			    second_seven: second_seven,
+			    in_reply_to_haiku_id: @in_reply_to,
+			    last_part: true
+			    )
+	@in_reply_to = @in_reply_to + 1
+      }
+    end
+end 
 
 def make_relationships
   users = User.all

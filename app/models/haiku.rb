@@ -5,9 +5,10 @@ class Haiku < ActiveRecord::Base
   # これは Rails 3 までで、rails 4 では無名関数を使うらしい
   # -> { order('created_at DESC') } # それがこれ
   validates :user_id, presence: true
-  validates :first_five, presence: true, length: { maximum: 6 }
-  validates :middle_seven, presence:true, length: { maximum: 8 }
-  validates :last_five, presence:true, length: { maximum: 6 }
+  validates :first_five, presence: true, length: { maximum: 7 }
+  validates :first_seven, presence: true, length: { maximum: 9 }
+  validates :second_five, presence: true, length: { maximum: 7 }
+  validates :second_seven, presence: true, length: { maximum: 9 }
 
   # フィード
   def self.from_users_followed_by(user)
