@@ -21,4 +21,11 @@ class Haiku < ActiveRecord::Base
     where("user_id IN (#{followed_user_ids}) OR user_id = :user_id",
            user_id: user)
   end
+
+  # in_reply_to を取得
+  # in_reply_to が設定されてないことは想定されてない(view の時点で確認)
+  # in_reply_to 元が削除された場合は reply の方も削除される
+  def in_reply_to_haiku
+    @haiku_in_reply_to = Haiku.find_by_id(in_reply_to_haiku_id)
+  end
 end

@@ -29,9 +29,9 @@ end
 def make_haikus
     users = User.all(limit: 6)
     50.times do
-      first_five = "12345"
-      first_seven = "1234567"
-      second_five = "12345"
+      first_five = "あいうえお"
+      first_seven = "かきくけこさし"
+      second_five = "すせそたち"
       users.each{ |user|
         user.haikus.create!(first_five: first_five,
 			    first_seven: first_seven,
@@ -44,8 +44,8 @@ end
 def make_replies
     users = User.all(limit: 3)
     10.times do
-      first_seven = "1234567"
-      second_seven = "1234567"
+      first_seven = "つてとなにぬね"
+      second_seven = "のはひふへほま"
       @in_reply_to = 1
       users.each{ |user|
         user.haikus.create!(first_five: "ぬ",
@@ -55,7 +55,7 @@ def make_replies
 			    in_reply_to_haiku_id: @in_reply_to,
 			    last_part: true
 			    )
-	@in_reply_to = @in_reply_to + 1
+	#@in_reply_to = @in_reply_to + 1
       }
     end
 end 

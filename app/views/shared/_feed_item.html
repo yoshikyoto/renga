@@ -1,21 +1,47 @@
 <% # フィードの一つひとつのアイテムを表示するパーシャル %>
-<li id="<% feed_item.id %>">
+<!-- feed_item -->
+<li id="<% feed_item.id %>" class="contenttext">
   <%= link_to gravatar_for(feed_item.user) %>
   <span class="user">
     <%= link_to feed_item.user.name, feed_item.user %>
-  </span>
-  <span class="content">
-    <% if !feed_item.last_part %>
-      <%= feed_item.first_five %>
-      <%= feed_item.first_seven %>
-      <%= feed_item.second_five %>
+    <% if feed_item.in_reply_to_haiku_id %>
+      が下の句を返しました
     <% else %>
-      <%= feed_item.first_seven %>
-      <%= feed_item.second_seven %>
+      が上の句を詠みました
     <% end %>
   </span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
-    <%= render partial: 'shared/delete_item_link', locals: { item: feed_item } %>
+  <span class="content">
+    <% if feed_item.in_reply_to_haiku_id %>
+      <!-- リプライ元の575 -->
+      <div class="subcontent">
+        <% in_reply_to_haiku = feed_item.in_reply_to_haiku %>
+        <%= in_reply_to_haiku.first_five %>
+	<%= in_reply_to_haiku.first_seven %>
+	<%= in_reply_to_haiku.second_five %> -
+	<%= link_to in_reply_to_haiku.user.name, in_reply_to_haiku.user %>
+      </div>
+    <% end %>
+    <% if !feed_item.last_part %>
+      <div class="first_part">
+        <%= feed_item.first_five %>
+        <%= feed_item.first_seven %>
+        <%= feed_item.second_five %>
+      </div>
+    <% else %>
+      <div class="last_part">
+        <%= feed_item.first_seven %>
+        <%= feed_item.second_seven %>
+      </div>
+    <% end %>
+    <div class="timestamp">
+      Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
+      <%= render partial: 'shared/delete_item_link', locals: { item: feed_item } %>
+    </div>
+    <div class="reply_form">
+    </div>
+    <div class="action">
+      リプライを返す
+      をかし
+    </div>
   </span>
 </li>

@@ -217,17 +217,33 @@ input, textarea, select, .uneditable-input{
 .microposts{
   list-style: none;
   margin: 10px 0 0 0;
-
+  .user{
+    color: #666666;
+  }
   li{
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
   }
 }
+
 .content{
   display: block;
+  overflow: auto;
+  .subcontent{
+    display: block;
+    border-left: 1px solid #cccccc;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+  }
+  .last_part{
+    margin-left: 20px;
+  }
 }
 .timestamp{
-  color: #999
+  color: #999;
+  display: block;
+  overflow: auto;
 }
 .gravatar{
   float: left;
